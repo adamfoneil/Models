@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbSchema.Attributes", "DbSchema.Attributes\DbSchema.Attributes.csproj", "{06DA62E9-5EE8-4192-8E09-17DB5682C3F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbSchema", "DbSchema.Attributes\DbSchema.csproj", "{06DA62E9-5EE8-4192-8E09-17DB5682C3F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

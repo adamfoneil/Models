@@ -1,14 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>AO.DbSchema.Attributes</AssemblyName>
-    <RootNamespace>AO.DbSchema.Attributes</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Adam O'Neil</Authors>
-    <Product>Adam O'Neil</Product>
-    <Description>A few attributes I use for SQL DDL generation</Description>
-    <Copyright>Copyright (c) 2020 Adam O'Neil</Copyright>
-  </PropertyGroup>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
 </Project>
