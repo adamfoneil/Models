@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace AO.DbSchema.Attributes.Interfaces
 {
-    public interface IValidate<TModel>
+    public interface IValidate
     {
-        ValidationResult Validate();
-        Task<ValidationResult> ValidateAsync(IDbConnection connection);        
+        ValidateResult Validate();
+        Task<ValidateResult> ValidateAsync(IDbConnection connection);        
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace AO.DbSchema.Attributes.Models
 {
-    public class ValidationResult
+    public class ValidateResult
     {
         /// <summary>
         /// is the model instance valid to save?
