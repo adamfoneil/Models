@@ -5,7 +5,7 @@ namespace AO.DbSchema.Attributes.Interfaces
 {
     public interface IValidate<TModel>
     {
-        bool IsValid(TModel model);
-        Task<bool> IsValidAsync(IDbConnection connection, TModel model);
+        bool IsValid();
+        Task<bool> IsValidAsync(IDbConnection connection);
     }
 }
