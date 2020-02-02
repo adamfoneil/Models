@@ -1,0 +1,1 @@
+This is a very small library of some attributes an a single enum that I use with [Dapper.CX](https://github.com/adamosoftware/Dapper.CX). I extracted them to a standalone library so that model class projects that use these attributes won't have a Dapper dependency.
