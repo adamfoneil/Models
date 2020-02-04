@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamosoftware/DbSchema.Attributes</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamosoftware/DbSchema.Attributes</PackageProjectUrl>
-    <Version>1.0.5</Version>
-    <PackageReleaseNotes>Renamed ValidationResult to ValidateResult to clear confusion with another class name</PackageReleaseNotes>
+    <Version>1.0.6</Version>
+    <PackageReleaseNotes>Simplified IGetRelated</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

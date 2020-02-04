@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace AO.DbSchema.Interfaces
 {
-    public interface IGetRelated<TModel>
+    public interface IGetRelated
     {
         /// <summary>
         /// perform any additional Gets that are related to this model
         /// </summary>        
-        Func<IDbConnection, TModel, Task> OnGetAsync { get; }
+        Func<IDbConnection, Task> OnGetAsync { get; }
     }
 }
