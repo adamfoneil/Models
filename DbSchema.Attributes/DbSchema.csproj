@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamosoftware/DbSchema.Attributes</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamosoftware/DbSchema.Attributes</PackageProjectUrl>
-    <Version>1.0.7</Version>
-    <PackageReleaseNotes>added CascadeDelete property to [References] attribute</PackageReleaseNotes>
+    <Version>1.0.8</Version>
+    <PackageReleaseNotes>added [Calculated] attribute</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
