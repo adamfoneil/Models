@@ -6,9 +6,9 @@ namespace AO.DbSchema.Attributes.Attributes
     /// denotes a calculated column
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class CalculatedAttibute : Attribute
+    public class CalculatedAttribute : Attribute
     {
-        public CalculatedAttibute(string expression, bool persisted = false)
+        public CalculatedAttribute(string expression, bool persisted = false)
         {
             Expression = expression;
             IsPersisted = persisted;
