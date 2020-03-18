@@ -12,7 +12,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamosoftware/DbSchema.Attributes</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamosoftware/DbSchema.Attributes</PackageProjectUrl>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
     <PackageReleaseNotes>added [Calculated] attribute</PackageReleaseNotes>
   </PropertyGroup>
 

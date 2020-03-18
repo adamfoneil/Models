@@ -7,6 +7,6 @@ namespace AO.DbSchema.Attributes.Interfaces
     public interface IValidate
     {
         ValidateResult Validate();
-        Task<ValidateResult> ValidateAsync(IDbConnection connection);        
+        Task<ValidateResult> ValidateAsync(IDbConnection connection, IDbTransaction txn = null);        
     }
 }
