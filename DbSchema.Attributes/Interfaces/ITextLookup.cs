@@ -9,6 +9,6 @@ namespace AO.DbSchema.Attributes.Interfaces
     /// </summary>
     public interface ITextLookup
     {
-        Task<string> GetTextFromKeyAsync(IDbConnection connection, string propertyName, object keyValue);
+        Task<string> GetTextFromKeyAsync(IDbConnection connection, IDbTransaction transaction, string propertyName, object keyValue);
     }
 }

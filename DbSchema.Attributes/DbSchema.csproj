@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamosoftware/DbSchema.Attributes</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamosoftware/DbSchema.Attributes</PackageProjectUrl>
-    <Version>1.0.13</Version>
-    <PackageReleaseNotes>added ITextLookup</PackageReleaseNotes>
+    <Version>1.0.14</Version>
+    <PackageReleaseNotes>added IDbTransaction arg to ITextLookup</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
