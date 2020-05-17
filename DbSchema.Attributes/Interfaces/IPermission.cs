@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace AO.Models.Interfaces
 {
+    /// <summary>
+    /// use this for permission checks that don't involve tenant validation
+    /// </summary>
     public interface IPermission
     {
         /// <summary>

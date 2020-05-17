@@ -9,7 +9,7 @@ namespace AO.Models.Extensions
         /// <summary>
         /// provides a standard implementation of <see cref="ITenantIsolated{T}.IsValidTenantAsync(IDbConnection, IUser{T}, IDbTransaction)"/>
         /// </summary>
-        public static async Task<bool> IsTenantAsync<T>(this ITenantIsolated<T> model, IDbConnection connection, IUser<T> user, IDbTransaction txn = null)
+        public static async Task<bool> IsValidTenantAsync<T>(this ITenantIsolated<T> model, IDbConnection connection, IUser<T> user, IDbTransaction txn = null)
         {
             var tenantId = await model.GetTenantIdAsync(connection, txn);
             return user.TenantId.Equals(tenantId);

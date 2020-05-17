@@ -9,6 +9,6 @@ namespace AO.DbSchema.Interfaces
         /// <summary>
         /// perform any additional Gets that are related to this model
         /// </summary>        
-        Func<IDbConnection, IDbTransaction, Task> OnGetAsync { get; }
+        Task GetRelatedAsync(IDbConnection connection, IDbTransaction txn = null);
     }
 }

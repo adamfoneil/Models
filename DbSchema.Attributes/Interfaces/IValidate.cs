@@ -4,8 +4,7 @@ using System.Threading.Tasks;
 namespace AO.Models.Interfaces
 {
     /// <summary>
-    /// use this to validate properties on a model, but
-    /// don't use for permission-related checks
+    /// use this to validate properties on a model, not intended for permission checks    
     /// </summary>
     public interface IValidate
     {
