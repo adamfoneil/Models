@@ -10,10 +10,10 @@
     <Description>A few attributes and interfaces I use for SQL DDL generation and model class development</Description>
     <Copyright>Copyright (c) 2020 Adam O'Neil</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <RepositoryUrl>https://github.com/adamosoftware/DbSchema.Attributes</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/adamosoftware/DbSchema.Attributes</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
     <Version>1.1.0</Version>
-    <PackageReleaseNotes>new interfaces IPermission, IStamped, ITrigger, IUser</PackageReleaseNotes>
+    <PackageReleaseNotes>new interfaces IPermission, IAudit, ITrigger, IUser, ITenantIsolated, reworked IGetRelated</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
