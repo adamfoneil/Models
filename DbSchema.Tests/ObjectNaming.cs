@@ -1,5 +1,4 @@
-using AO.DbSchema.Attributes;
-using AO.DbSchema.Attributes.Models;
+using AO.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel.DataAnnotations.Schema;
 
