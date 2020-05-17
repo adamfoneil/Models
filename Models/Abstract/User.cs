@@ -25,7 +25,7 @@ namespace AO.Models.Abstract
         /// <summary>
         /// use this to inspect the Principal and Claims to determine IUser properties
         /// </summary>
-        public abstract void Initialize();
+        protected abstract void Initialize();
 
         /// <summary>
         /// implement this to get the user's current local time.
