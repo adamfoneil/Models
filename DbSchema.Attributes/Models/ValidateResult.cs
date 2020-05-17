@@ -1,4 +1,4 @@
-﻿namespace AO.Models.Models
+﻿namespace AO.Models
 {
     public class ValidateResult
     {

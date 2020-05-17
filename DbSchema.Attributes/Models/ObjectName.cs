@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace AO.Models.Models
+namespace AO.Models
 {
     public class ObjectName
     {
@@ -38,8 +38,8 @@ namespace AO.Models.Models
 
         private static string CleanedGenericName(Type type)
         {
-            return (type.IsGenericType) ? 
-                $"{UpTo(type.GetGenericTypeDefinition().Name, "`")}_{string.Join("_", type.GetGenericArguments().Select(t => AliasFromTypeName(t)))}" : 
+            return (type.IsGenericType) ?
+                $"{UpTo(type.GetGenericTypeDefinition().Name, "`")}_{string.Join("_", type.GetGenericArguments().Select(t => AliasFromTypeName(t)))}" :
                 type.Name;
         }
 
