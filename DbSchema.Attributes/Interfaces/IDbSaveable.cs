@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Threading.Tasks;
 
-namespace AO.DbSchema.Attributes.Interfaces
+namespace AO.Models.Interfaces
 {
     /// <summary>
     /// use this to make anything able to be saved in a database.    

@@ -1,4 +1,4 @@
-﻿namespace AO.DbSchema.Attributes.Models
+﻿namespace AO.Models.Models
 {
     public class ValidateResult
     {

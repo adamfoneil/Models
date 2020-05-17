@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace AO.DbSchema.Attributes.Internal
+namespace AO.Models.Internal
 {
     internal static class AttributeExtensions
     {

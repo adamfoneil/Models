@@ -2,7 +2,7 @@
 using System.Data;
 using System.Threading.Tasks;
 
-namespace AO.DbSchema.Attributes.Interfaces
+namespace AO.Models.Interfaces
 {
     /// <summary>
     /// Use this on model classes to convert key values to text equivalents.

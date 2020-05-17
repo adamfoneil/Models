@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AO.DbSchema.Attributes
+namespace AO.Models
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class IdentityAttribute : Attribute

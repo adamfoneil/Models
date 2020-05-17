@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AO.DbSchema.Attributes
+namespace AO.Models
 {
     /// <summary>
     /// defines a foreign key on a property by referring to the primary type identity.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AO.DbSchema.Attributes
+namespace AO.Models
 {
     /// <summary>
     /// defines a schema for use with generated tables

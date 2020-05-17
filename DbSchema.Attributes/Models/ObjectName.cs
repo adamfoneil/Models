@@ -1,10 +1,10 @@
-﻿using AO.DbSchema.Attributes.Internal;
+﻿using AO.Models.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace AO.DbSchema.Attributes.Models
+namespace AO.Models.Models
 {
     public class ObjectName
     {

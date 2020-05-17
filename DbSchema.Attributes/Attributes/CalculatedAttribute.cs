@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AO.DbSchema.Attributes
+namespace AO.Models
 {
     /// <summary>
     /// denotes a calculated column

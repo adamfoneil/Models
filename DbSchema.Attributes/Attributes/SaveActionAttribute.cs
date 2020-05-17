@@ -1,7 +1,7 @@
 ﻿using AO.DbSchema.Enums;
 using System;
 
-namespace AO.DbSchema.Attributes
+namespace AO.Models
 {
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class SaveActionAttribute : Attribute

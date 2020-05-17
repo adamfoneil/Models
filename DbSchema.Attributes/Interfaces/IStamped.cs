@@ -1,6 +1,6 @@
 ﻿using AO.DbSchema.Enums;
 
-namespace AO.DbSchema.Attributes.Interfaces
+namespace AO.Models.Interfaces
 {
     public interface IStamped
     {

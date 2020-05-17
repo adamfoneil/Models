@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>AO.DbSchema.Attributes</AssemblyName>
-    <RootNamespace>AO.DbSchema.Attributes</RootNamespace>
+    <AssemblyName>AO.Models</AssemblyName>
+    <RootNamespace>AO.Models</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Adam O'Neil</Authors>
     <Product>Adam O'Neil</Product>
@@ -12,8 +12,9 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamosoftware/DbSchema.Attributes</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamosoftware/DbSchema.Attributes</PackageProjectUrl>
-    <Version>1.0.16</Version>
-    <PackageReleaseNotes>added IDbSaveable</PackageReleaseNotes>
+    <Version>1.1.0</Version>
+    <PackageReleaseNotes>new interfaces IPermission, IStamped, ITrigger, IUser</PackageReleaseNotes>
+    <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
