@@ -6,8 +6,19 @@ namespace AO.Models.Interfaces
 {
     public interface IPermission
     {
-        Task<bool> AllowGetAsync<T>(IDbConnection connection, IUser<T> user);
-        Task<bool> AllowSaveAsync<T>(IDbConnection connection, IUser<T> user, SaveAction action);
-        Task<bool> AllowDeleteAsync<T>(IDbConnection connection, IUser<T> user);
+        /// <summary>
+        /// return true if the user has permission to get this row
+        /// </summary>
+        Task<bool> AllowGetAsync<T>(IDbConnection connection, IUser<T> user, IDbTransaction txn = null);
+
+        /// <summary>
+        /// return true if the user has permission to save this row
+        /// </summary>
+        Task<bool> AllowSaveAsync<T>(IDbConnection connection, IUser<T> user, SaveAction action, IDbTransaction txn = null);
+
+        /// <summary>
+        /// return true if the user has permission to delete this row
+        /// </summary>
+        Task<bool> AllowDeleteAsync<T>(IDbConnection connection, IUser<T> user, IDbTransaction txn = null);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace AO.Models.Interfaces
 {
-    public interface IStamped
+    public interface IAudit
     {
         /// <summary>
         /// Called right before a row is updated or inserted.
