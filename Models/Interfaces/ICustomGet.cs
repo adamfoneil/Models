@@ -1,4 +1,4 @@
-﻿namespace AO.DbSchema.Interfaces
+﻿namespace AO.Models.Interfaces
 {
     /// <summary>
     /// implement this on model classes to inject your own SELECT...FROM

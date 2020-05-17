@@ -1,4 +1,4 @@
-﻿namespace AO.DbSchema.Enums
+﻿namespace AO.Models.Enums
 {
     public enum SaveAction
     {

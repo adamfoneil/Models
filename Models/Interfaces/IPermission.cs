@@ -1,4 +1,4 @@
-﻿using AO.DbSchema.Enums;
+﻿using AO.Models.Enums;
 using System.Data;
 using System.Threading.Tasks;
 

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Threading.Tasks;
 
-namespace AO.DbSchema.Interfaces
+namespace AO.Models.Interfaces
 {
     public interface IGetRelated
     {
