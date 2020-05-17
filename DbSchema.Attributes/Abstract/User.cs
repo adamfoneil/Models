@@ -7,7 +7,7 @@ using System.Security.Principal;
 namespace AO.Models.Abstract
 {
     /// <summary>
-    /// implenment in your application to provide a way to take advantage of IPermission, IAudit
+    /// implenment in your application to provide a way to take advantage of IPermission and IAudit
     /// </summary>
     /// <typeparam name="T">user Id and Tenant Id type</typeparam>
     public abstract class User<T> : IUser<T>
