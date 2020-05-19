@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.2</Version>
-    <PackageReleaseNotes>added IUserBase</PackageReleaseNotes>
+    <Version>1.1.3</Version>
+    <PackageReleaseNotes>reworked IUser into ITenantUser</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 

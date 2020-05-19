@@ -10,7 +10,7 @@ namespace AO.Models.Abstract
     /// implenment in your application to provide a way to take advantage of IPermission and IAudit
     /// </summary>
     /// <typeparam name="T">user Id and Tenant Id type</typeparam>
-    public abstract class User<T> : IUser<T>
+    public abstract class User<T> : ITenantUser<T>
     {
         public User(IPrincipal principal, IEnumerable<Claim> claims)
         {
