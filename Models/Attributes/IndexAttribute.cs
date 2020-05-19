@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AO.Models.Attributes
+namespace AO.Models
 {
     /// <summary>
     /// defines a non-unique index
