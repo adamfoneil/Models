@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.4</Version>
-    <PackageReleaseNotes>added IUserBase args to ITrigger</PackageReleaseNotes>
+    <Version>1.1.5</Version>
+    <PackageReleaseNotes>added DecimalPrecision attribute</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
