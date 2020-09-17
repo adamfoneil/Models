@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.6</Version>
-    <PackageReleaseNotes>added ISqlCreateObjects interface, for ModelSync implementation in Dapper.CX</PackageReleaseNotes>
+    <Version>1.1.7</Version>
+    <PackageReleaseNotes>renamed ISqlCreateObjects -&gt; ISqlObjectCreator, and added missing connection arg</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
