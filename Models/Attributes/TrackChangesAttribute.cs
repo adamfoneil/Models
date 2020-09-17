@@ -9,11 +9,13 @@ namespace AO.Models.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class TrackChangesAttribute : Attribute
     {
-        public TrackChangesAttribute(params string[] ignoreProperties)
+        public TrackChangesAttribute(string ignoreProperties = null)
         {
             IgnoreProperties = ignoreProperties;
         }
 
-        public IEnumerable<string> IgnoreProperties { get; }
+        public string IgnoreProperties { get; }
+
+        public IEnumerable<string> GetIgnoreProperties() => IgnoreProperties?.Split(new char[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
     }
 }
