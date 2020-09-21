@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AO.Models.Attributes
 {
@@ -16,6 +17,8 @@ namespace AO.Models.Attributes
 
         public string IgnoreProperties { get; }
 
-        public IEnumerable<string> GetIgnoreProperties() => IgnoreProperties?.Split(new char[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
+        public IEnumerable<string> GetIgnoreProperties() => 
+            IgnoreProperties?.Split(new char[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries) ??
+            Enumerable.Empty<string>();
     }
 }

@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.11</Version>
-    <PackageReleaseNotes>added IDbTransaction arg to IDbSaveable</PackageReleaseNotes>
+    <Version>1.1.12</Version>
+    <PackageReleaseNotes>TrackChanges.GetIgnoreProperties can return empty enumerable instead of null</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
