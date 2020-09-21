@@ -8,6 +8,6 @@ namespace AO.Models.Interfaces
     /// </summary>
     public interface IDbSaveable
     {
-        Task SaveAsync(IDbConnection connection);
+        Task SaveAsync(IDbConnection connection, IDbTransaction txn = null);
     }
 }
