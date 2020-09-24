@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 namespace AO.Models.Interfaces
 {
     /// <summary>
-    /// use much as you would SQL Server triggers, but recommend limit actions to be database-internal.
-    /// For example, don't send email nor call external services because of the depdendencies you'd have to add
+    /// use much as you would SQL Server triggers
     /// </summary>
     public interface ITrigger
     {
