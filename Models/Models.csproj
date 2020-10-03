@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.13</Version>
-    <PackageReleaseNotes>added [NoChangeTracking] attribute</PackageReleaseNotes>
+    <Version>1.1.14</Version>
+    <PackageReleaseNotes>added Timestamp.Local static method</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
