@@ -1,4 +1,5 @@
-﻿using AO.Models.Extensions;
+﻿using AO.Models.Enums;
+using AO.Models.Extensions;
 using AO.Models.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +20,8 @@ namespace AO.Models.Models
         
         public int UserId { get; set; }
 
+        [MaxLength(256)]
+        [SaveAction(SaveAction.None)]
         public string UserName { get; set; }
 
         public string Name => UserName;
