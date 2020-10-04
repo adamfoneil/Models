@@ -16,6 +16,7 @@ namespace AO.Models.Models
     {
         [Key]
         [MaxLength(450)]
+        [SaveAction(SaveAction.None)]
         public string Id { get; set; }
         
         public int UserId { get; set; }
@@ -38,8 +39,8 @@ namespace AO.Models.Models
         public string Name => UserName;
 
         [MaxLength(50)]
-        public string TimezoneId { get; set; }
+        public string TimeZoneId { get; set; }
 
-        public DateTime LocalTime => Timestamp.Local(TimezoneId);
+        public DateTime LocalTime => Timestamp.Local(TimeZoneId);
     }
 }

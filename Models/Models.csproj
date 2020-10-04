@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.16</Version>
-    <PackageReleaseNotes>more UserProfileBase properties</PackageReleaseNotes>
+    <Version>1.1.17</Version>
+    <PackageReleaseNotes>case fixed on UserProfileBase.TimeZoneId</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
