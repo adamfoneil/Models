@@ -1,4 +1,4 @@
-﻿using AO.Models.Internal;
+﻿using AO.Models.Static;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
