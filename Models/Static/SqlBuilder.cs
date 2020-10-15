@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace AO.Models.Static
 {
-    public class SqlBuilder
+    public static class SqlBuilder
     {
         public static IEnumerable<Type> SupportedTypes => new Type[]
         {
@@ -100,7 +100,7 @@ namespace AO.Models.Static
             return modelType.GetProperties().Where(pi => isMapped(pi)).ToArray();
         }
 
-        protected static string ApplyDelimiter(string name, char startDelimiter, char endDelimiter) => 
+        public static string ApplyDelimiter(string name, char startDelimiter, char endDelimiter) => 
             string.Join(".", name
                 .Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(namePart => $"{startDelimiter}{namePart}{endDelimiter}"));        
