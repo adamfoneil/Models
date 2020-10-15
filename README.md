@@ -9,6 +9,7 @@ Nuget package: **AO.Models**
 - [Interfaces](https://github.com/adamosoftware/DbSchema.Attributes/tree/master/Models/Interfaces)
 - [Models](https://github.com/adamosoftware/DbSchema.Attributes/tree/master/Models/Models)
 - [Enums](https://github.com/adamosoftware/DbSchema.Attributes/tree/master/Models/Enums)
+- [Static](https://github.com/adamfoneil/Models/tree/master/Models/Static)
 
 ## Prior Versions
 There's an earlier version of this [package](https://www.nuget.org/packages/AO.DbSchema.Attributes/) called **AO.DbSchema.Attributes**.
