@@ -23,42 +23,56 @@ namespace AO.Models.Static
             typeof(Guid), typeof(Guid?)
         };
 
-        public static string Insert<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
+        public static string Insert(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
         {
-            var columns = 
-                columnNames ?? 
-                GetMappedProperties(typeof(T), SaveAction.Insert).Select(pi => pi.GetColumnName());
-
-            if (!columns.Any()) throw new InvalidOperationException($"Model type {typeof(T).Name} must have at least one column to build INSERT statement.");
+            var columns = GetColumns(modelType, SaveAction.Insert, columnNames);
 
             return
-                $@"INSERT INTO {ApplyDelimiter(typeof(T).GetTableName(), startDelimiter, endDelimiter)} (
+                $@"INSERT INTO {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} (
                     {string.Join(", ", columns.Select(col => ApplyDelimiter(col, startDelimiter, endDelimiter)))}
                 ) VALUES (
                     {string.Join(", ", columns.Select(col => "@" + col))}
                 );";
         }
 
-        public static string Update<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
+        public static string Insert<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
         {
-            var columns =
-               columnNames ??               
-               GetMappedProperties(typeof(T), SaveAction.Update).Select(pi => pi.GetColumnName());
+            return Insert(typeof(T), columnNames, startDelimiter, endDelimiter);
+        }
 
-            if (!columns.Any()) throw new InvalidOperationException($"Model type {typeof(T).Name} must have at least one column to build UPDATE statement.");
-
-            var type = typeof(T);
-            string identityCol = type.GetIdentityName();
+        public static string Update(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
+        {
+            var columns = GetColumns(modelType, SaveAction.Update, columnNames);
+            
+            string identityCol = modelType.GetIdentityName();
 
             return
-                $@"UPDATE {ApplyDelimiter(type.GetTableName(), startDelimiter, endDelimiter)} SET 
+                $@"UPDATE {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} SET 
                     {string.Join(", ", columns.Select(col => $"{ApplyDelimiter(col, startDelimiter, endDelimiter)}=@{col}"))} 
                 WHERE 
                     {ApplyDelimiter(identityCol, startDelimiter, endDelimiter)}=@{identityCol}";
         }
 
-        public static string Delete<T>(char startDelimiter = '[', char endDelimiter = ']') =>
-            $@"DELETE {ApplyDelimiter(typeof(T).GetTableName(), startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(typeof(T).GetIdentityName(), startDelimiter, endDelimiter)}=@id";
+        public static string Update<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
+        {
+            return Update(typeof(T), columnNames, startDelimiter, endDelimiter);
+        }
+
+        public static string Delete(Type modelType, char startDelimiter = '[', char endDelimiter = ']') =>
+            $@"DELETE {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(modelType.GetIdentityName(), startDelimiter, endDelimiter)}=@id";
+
+        public static string Delete<T>(char startDelimiter = '[', char endDelimiter = ']') => Delete(typeof(T), startDelimiter, endDelimiter);
+
+        private static IEnumerable<string> GetColumns(Type modelType, SaveAction saveAction, IEnumerable<string> explicitColumns)
+        {
+            var result =
+                explicitColumns ??
+                GetMappedProperties(modelType, saveAction).Select(pi => pi.GetColumnName());
+
+            if (!result.Any()) throw new InvalidOperationException($"Model type {modelType.Name} must have at least one column to build SQL {saveAction} statement.");
+
+            return result;
+        }
 
         private static IEnumerable<PropertyInfo> GetMappedProperties(Type modelType, SaveAction saveAction)
         {

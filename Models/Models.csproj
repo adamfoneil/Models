@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.18</Version>
-    <PackageReleaseNotes>added SqlBuilder helper</PackageReleaseNotes>
+    <Version>1.1.19</Version>
+    <PackageReleaseNotes>added non-generic SqlBuilder methods</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
