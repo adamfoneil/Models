@@ -38,12 +38,12 @@ namespace AO.Models
         /// <summary>
         /// shorthand async method for indicating validation success
         /// </summary>        
-        public async Task<ValidateResult> OkAsync() => await Task.FromResult(Ok());
+        public static async Task<ValidateResult> OkAsync() => await Task.FromResult(Ok());
 
         /// <summary>
         /// shorthand async method to indicate failure
         /// </summary>
         /// <param name="message"></param>        
-        public async Task<ValidateResult> FailedAsync(string message) => await Task.FromResult(Failed(message));
+        public static async Task<ValidateResult> FailedAsync(string message) => await Task.FromResult(Failed(message));
     }
 }
