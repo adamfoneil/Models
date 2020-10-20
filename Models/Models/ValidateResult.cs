@@ -1,4 +1,6 @@
-﻿namespace AO.Models
+﻿using System.Threading.Tasks;
+
+namespace AO.Models
 {
     public class ValidateResult
     {
@@ -22,5 +24,26 @@
         /// if it's not valid, why not?
         /// </summary>
         public string Message { get; set; }
+
+        /// <summary>
+        /// shorthand method for indicating validation success
+        /// </summary>        
+        public static ValidateResult Ok() => new ValidateResult() { IsValid = true };
+
+        /// <summary>
+        /// shorthand method to indicate failure
+        /// </summary>
+        public static ValidateResult Failed(string message) => new ValidateResult() { IsValid = false, Message = message };
+
+        /// <summary>
+        /// shorthand async method for indicating validation success
+        /// </summary>        
+        public async Task<ValidateResult> OkAsync() => await Task.FromResult(Ok());
+
+        /// <summary>
+        /// shorthand async method to indicate failure
+        /// </summary>
+        /// <param name="message"></param>        
+        public async Task<ValidateResult> FailedAsync(string message) => await Task.FromResult(Failed(message));
     }
 }
