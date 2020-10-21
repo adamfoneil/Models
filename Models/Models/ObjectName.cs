@@ -8,6 +8,16 @@ namespace AO.Models
 {
     public class ObjectName
     {
+        public ObjectName()
+        {
+        }
+
+        public ObjectName(string schema, string name)
+        {
+            Schema = schema;
+            Name = name;
+        }
+
         public string Schema { get; set; }
         public string Name { get; set; }
 
@@ -34,6 +44,15 @@ namespace AO.Models
                 defaultSchema;
 
             return new ObjectName() { Schema = schema, Name = name };
+        }
+
+        public static ObjectName FromName(string name, string defaultSchema = "dbo")
+        {
+            var parts = name.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            return 
+                (parts.Length == 2) ? new ObjectName() { Schema = parts[0].Trim(), Name = parts[1].Trim() } :
+                (parts.Length == 1) ? new ObjectName() { Schema = defaultSchema, Name = parts[0].Trim() } :
+                throw new ArgumentException($"Unable to parse object name: {name}");
         }
 
         private static string CleanedGenericName(Type type)

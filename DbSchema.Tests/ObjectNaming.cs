@@ -15,6 +15,13 @@ namespace DbSchema.Tests
             Assert.IsTrue(ObjectName.FromType(typeof(UserProfile)).ToString().Equals("dbo.AspNetUsers"));
             Assert.IsTrue(ObjectName.FromType(typeof(Deleted<int>)).ToString().Equals("delete_log.Deleted_int"));
         }
+
+        [TestMethod]
+        public void SampleNamesFromString()
+        {
+            Assert.IsTrue(ObjectName.FromName("dbo.Account").Equals(new ObjectName("dbo", "Account")));
+            Assert.IsTrue(ObjectName.FromName("Account").Equals(new ObjectName("dbo", "Account")));
+        }
     }
 
     internal class Employee { }
