@@ -74,7 +74,7 @@ namespace AO.Models.Static
             return result;
         }
 
-        private static IEnumerable<PropertyInfo> GetMappedProperties(Type modelType, SaveAction saveAction)
+        public static IEnumerable<PropertyInfo> GetMappedProperties(Type modelType, SaveAction saveAction)
         {
             bool isNullableEnum(Type type)
             {
