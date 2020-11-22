@@ -7,5 +7,11 @@
     /// </summary>    
     public class DbTable<TModel>
     {
+        public DbTable(TModel model)
+        {
+            Model = model;
+        }
+
+        public TModel Model { get; }
     }
 }
