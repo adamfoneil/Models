@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DbTableTests.Models.Conventions
 {
-    public abstract class BaseTable
+    public abstract class BaseTable : IAudit
     {        
         public int Id { get; set; }
 
@@ -20,18 +20,19 @@ namespace DbTableTests.Models.Conventions
         [MaxLength(50)]
         public string ModifiedBy { get; set; }
 
-        public static void Stamp(BaseTable model, SaveAction saveAction, IUserBase user)
+
+        public void Stamp(SaveAction saveAction, IUserBase user)
         {
             switch (saveAction)
             {
                 case SaveAction.Insert:
-                    model.CreatedBy = user.Name;
-                    model.DateCreated = user.LocalTime;
+                    CreatedBy = user.Name;
+                    DateCreated = user.LocalTime;
                     break;
 
                 case SaveAction.Update:
-                    model.ModifiedBy = user.Name;
-                    model.DateModified = user.LocalTime;
+                    ModifiedBy = user.Name;
+                    DateModified = user.LocalTime;
                     break;
             }
         }

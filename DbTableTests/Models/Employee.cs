@@ -21,7 +21,7 @@ namespace DbTableTests.Models
         public IEnumerable<int> Reports { get; set; }
     }
 
-    public class EmployeeTable : ConventionalTable<Employee>, IGetRelated, IAudit
+    public class EmployeeTable : DbTable<Employee>, IGetRelated
     {
         public EmployeeTable(Employee model) : base(model)
         {
@@ -30,16 +30,6 @@ namespace DbTableTests.Models
         public async Task GetRelatedAsync(IDbConnection connection, IDbTransaction txn = null)
         {
             Model.Reports = await connection.QueryAsync<int>("SELECT [Id] FROM [dbo].[Employee] WHERE [ManagerId]=@id", new { id = Model.Id });
-        }
-
-        public void Stamp(SaveAction saveAction, IUserBase user) => BaseTable.Stamp(Model, saveAction, user);
-        
+        }        
     }    
-
-    public class ConventionalTable<TModel> : DbTable<TModel> where TModel : BaseTable
-    {
-        public ConventionalTable(TModel model) : base(model)
-        {
-        }
-    }
 }
