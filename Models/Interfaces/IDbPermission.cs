@@ -7,7 +7,7 @@ namespace AO.Models.Interfaces
     /// <summary>
     /// use this for permission or role checks that don't involve tenant validation
     /// </summary>
-    public interface IPermission
+    public interface IDbPermission
     {
         /// <summary>
         /// return true if the user has permission to get this row

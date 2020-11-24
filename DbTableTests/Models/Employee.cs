@@ -21,7 +21,7 @@ namespace DbTableTests.Models
         public IEnumerable<int> Reports { get; set; }
     }
 
-    public class EmployeeTable : DbTable<Employee>, IGetRelated
+    public class EmployeeTable : DbTable<Employee>, IDbGetRelated
     {
         public EmployeeTable(Employee model) : base(model)
         {

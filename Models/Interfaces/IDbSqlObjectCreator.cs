@@ -8,7 +8,7 @@ namespace AO.Models.Interfaces
     /// <summary>
     /// describes an object that provides SQL statements that create objects
     /// </summary>
-    public interface ISqlObjectCreator
+    public interface IDbSqlObjectCreator
     {
         Task<IEnumerable<string>> GetStatementsAsync(IDbConnection connection, IEnumerable<Type> types);
     }

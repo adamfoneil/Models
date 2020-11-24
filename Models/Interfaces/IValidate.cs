@@ -8,7 +8,6 @@ namespace AO.Models.Interfaces
     /// </summary>
     public interface IValidate
     {
-        ValidateResult Validate();
-        Task<ValidateResult> ValidateAsync(IDbConnection connection, IDbTransaction txn = null);
+        ValidateResult Validate();        
     }
 }

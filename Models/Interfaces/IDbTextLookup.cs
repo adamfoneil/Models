@@ -8,7 +8,7 @@ namespace AO.Models.Interfaces
     /// Use this on model classes to convert key values to text equivalents.
     /// Used with logged change tracking in Dapper.CX.ChangeTracking
     /// </summary>
-    public interface ITextLookup
+    public interface IDbTextLookup
     {
         /// <summary>
         /// what model properties support text value lookup?
