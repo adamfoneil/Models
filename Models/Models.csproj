@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.24</Version>
-    <PackageReleaseNotes>https://github.com/adamfoneil/Dapper.CX/issues/28</PackageReleaseNotes>
+    <Version>1.5.0-beta</Version>
+    <PackageReleaseNotes>https://github.com/adamfoneil/Models/issues/4</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
