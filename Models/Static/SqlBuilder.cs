@@ -94,6 +94,9 @@ namespace AO.Models.Static
                 var attr = pi.GetCustomAttribute<NotMappedAttribute>();
                 if (attr != null) return false;
 
+                var calc = pi.GetCustomAttribute<CalculatedAttribute>();
+                if (calc != null) return false;
+
                 return true;
             };
 
