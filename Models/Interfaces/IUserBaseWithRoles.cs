@@ -4,6 +4,6 @@ namespace AO.Models.Interfaces
 {
     public interface IUserBaseWithRoles : IUserBase
     {
-        HashSet<string> Roles { get; }
+        HashSet<string> Roles { get; set; }
     }
 }
