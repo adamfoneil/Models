@@ -12,7 +12,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.26</Version>
+    <Version>1.1.27</Version>
     <PackageReleaseNotes>added IUserBaseWithRoles</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
