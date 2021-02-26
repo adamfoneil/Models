@@ -11,5 +11,6 @@ namespace AO.Models.Interfaces
     public interface ISqlObjectCreator
     {
         Task<IEnumerable<string>> GetStatementsAsync(IDbConnection connection, IEnumerable<Type> types);
+        Task<IEnumerable<string>> GetStatementsAsync(IDbConnection connection);
     }
 }

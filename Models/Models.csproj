@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.27</Version>
-    <PackageReleaseNotes>added IUserBaseWithRoles</PackageReleaseNotes>
+    <Version>1.1.28</Version>
+    <PackageReleaseNotes>added overload of ISqlObjectCreate.GetStatementsAsync</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
