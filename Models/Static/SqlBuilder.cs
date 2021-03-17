@@ -40,23 +40,27 @@ namespace AO.Models.Static
             return Insert(typeof(T), columnNames, startDelimiter, endDelimiter);
         }
 
-        public static string Update(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
+        public static string Update(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string identityParam = null)
         {
             var columns = GetColumns(modelType, SaveAction.Update, columnNames);
             
-            string identityCol = modelType.GetIdentityName();
+            string identityCol = identityColumn ?? modelType.GetIdentityName();
+
+            columns = columns.Except(new (string, string)[]
+            {
+                (identityCol, identityParam ?? identityCol)
+            });
 
             return
                 $@"UPDATE {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} SET 
                     {string.Join(", ", columns.Select(col => $"{ApplyDelimiter(col.columnName, startDelimiter, endDelimiter)}=@{col.parameterName}"))} 
                 WHERE 
-                    {ApplyDelimiter(identityCol, startDelimiter, endDelimiter)}=@{identityCol}";
+                    {ApplyDelimiter(identityCol, startDelimiter, endDelimiter)}=@{identityParam ?? identityCol}";
         }
 
-        public static string Update<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
-        {
-            return Update(typeof(T), columnNames, startDelimiter, endDelimiter);
-        }
+        public static string Update<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', 
+            string identityColumn = null, string identityParam = null) => 
+            Update(typeof(T), columnNames, startDelimiter, endDelimiter, identityColumn, identityParam);
 
         public static string Delete(Type modelType, char startDelimiter = '[', char endDelimiter = ']') =>
             $@"DELETE {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(modelType.GetIdentityName(), startDelimiter, endDelimiter)}=@id";

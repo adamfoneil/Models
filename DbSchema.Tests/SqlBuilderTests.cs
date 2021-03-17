@@ -57,6 +57,18 @@ namespace DbSchema.Tests
         }
 
         [TestMethod]
+        public void AtypicalUpdate()
+        {
+            string sql = SqlBuilder.Update<Models.Role>(identityColumn: "Id", identityParam: "RoleId");
+            const string result = 
+                @"UPDATE [AspNetRoles] SET 
+                    [Name]=@Name, [NormalizedName]=@NormalizedName, [ConcurrencyStamp]=@ConcurrencyStamp 
+                WHERE 
+                    [Id]=@RoleId";
+            Assert.IsTrue(sql.ReplaceWhitespace().Equals(result.ReplaceWhitespace()));
+        }
+
+        [TestMethod]
         public void UpdateStatementBase()
         {
             var emp = new Employee();

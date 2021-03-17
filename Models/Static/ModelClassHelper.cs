@@ -25,10 +25,7 @@ namespace AO.Models.Static
             }
         }
 
-        public static string GetIdentityName(this Type modelType)
-        {
-            return GetIdentityProperty(modelType).Name;
-        }
+        public static string GetIdentityName(this Type modelType) => GetIdentityProperty(modelType).Name;
 
         public static bool TryGetIdentityName(this Type modelType, out string propertyName)
         {
