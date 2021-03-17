@@ -29,9 +29,9 @@ namespace AO.Models.Static
 
             return
                 $@"INSERT INTO {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} (
-                    {string.Join(", ", columns.Select(col => ApplyDelimiter(col, startDelimiter, endDelimiter)))}
+                    {string.Join(", ", columns.Select(col => ApplyDelimiter(col.columnName, startDelimiter, endDelimiter)))}
                 ) VALUES (
-                    {string.Join(", ", columns.Select(col => "@" + col))}
+                    {string.Join(", ", columns.Select(col => "@" + col.parameterName))}
                 );";
         }
 
@@ -48,7 +48,7 @@ namespace AO.Models.Static
 
             return
                 $@"UPDATE {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} SET 
-                    {string.Join(", ", columns.Select(col => $"{ApplyDelimiter(col, startDelimiter, endDelimiter)}=@{col}"))} 
+                    {string.Join(", ", columns.Select(col => $"{ApplyDelimiter(col.columnName, startDelimiter, endDelimiter)}=@{col.parameterName}"))} 
                 WHERE 
                     {ApplyDelimiter(identityCol, startDelimiter, endDelimiter)}=@{identityCol}";
         }
@@ -63,11 +63,11 @@ namespace AO.Models.Static
 
         public static string Delete<T>(char startDelimiter = '[', char endDelimiter = ']') => Delete(typeof(T), startDelimiter, endDelimiter);
 
-        private static IEnumerable<string> GetColumns(Type modelType, SaveAction saveAction, IEnumerable<string> explicitColumns)
+        private static IEnumerable<(string columnName, string parameterName)> GetColumns(Type modelType, SaveAction saveAction, IEnumerable<string> explicitColumns)
         {
             var result =
-                explicitColumns ??
-                GetMappedProperties(modelType, saveAction).Select(pi => pi.GetColumnName());
+                explicitColumns?.Select(col => (col, col)) ??
+                GetMappedProperties(modelType, saveAction).Select(pi => (pi.GetColumnName(), pi.Name));
 
             if (!result.Any()) throw new InvalidOperationException($"Model type {modelType.Name} must have at least one column to build SQL {saveAction} statement.");
 
