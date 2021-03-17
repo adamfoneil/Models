@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.29</Version>
-    <PackageReleaseNotes>added Default attribute</PackageReleaseNotes>
+    <Version>1.1.30</Version>
+    <PackageReleaseNotes>better support for model classes using the [Column] attribute</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
