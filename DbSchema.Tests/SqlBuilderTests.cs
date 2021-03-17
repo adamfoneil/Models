@@ -44,6 +44,19 @@ namespace DbSchema.Tests
         }
 
         [TestMethod]
+        public void AtpyicalInsert()
+        {
+            string sql = SqlBuilder.Insert<Models.Role>();
+            const string result =
+                @"INSERT INTO [AspNetRoles] (
+                    [Id], [Name], [NormalizedName], [ConcurrencyStamp]
+                ) VALUES (
+                    @RoleId, @Name, @NormalizedName, @ConcurrencyStamp
+                );";
+            Assert.IsTrue(sql.ReplaceWhitespace().Equals(result.ReplaceWhitespace()));
+        }
+
+        [TestMethod]
         public void UpdateStatementBase()
         {
             var emp = new Employee();
