@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.31</Version>
-    <PackageReleaseNotes>added IModel&lt;TKey&gt; for upcoming WASM stuff</PackageReleaseNotes>
+    <Version>1.1.32</Version>
+    <PackageReleaseNotes>added IRepository for upcoming WASM stuff</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
