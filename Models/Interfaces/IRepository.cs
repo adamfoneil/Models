@@ -2,12 +2,10 @@
 
 namespace AO.Models.Interfaces
 {
-    public interface IRepository<TModel, TKey, TUser>
-        where TModel : IModel<TKey>
-        where TUser : IUserBase
+    public interface IRepository<TKey, TUser> where TUser : IUserBase
     {
-        Task<TModel> GetAsync(TUser user, TKey id);
-        Task<TModel> SaveAsync(TUser user, TModel model);
-        Task DeleteAsync(TUser user, TKey id);
+        Task<TModel> GetAsync<TModel>(TUser user, TKey id) where TModel : IModel<TKey>;
+        Task<TModel> SaveAsync<TModel>(TUser user, TModel model) where TModel : IModel<TKey>;
+        Task DeleteAsync<TModel>(TUser user, TKey id) where TModel : IModel<TKey>;
     }
 }
