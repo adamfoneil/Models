@@ -49,17 +49,10 @@ namespace AO.Models.Models
         /// </summary>
         public bool IsJobType<TRequest, TResult>(out TRequest request, out TResult result)
         {
-            if (!IsCompleted)
-            {
-                request = default;
-                result = default;
-                return false;
-            }
-
             if (RequestType.Equals(typeof(TRequest).Name))
             {
-                request = DeserializeJson<TRequest>(RequestData);
-                result = DeserializeJson<TResult>(ResultData);
+                request = DeserializeJson<TRequest>(RequestData);                
+                result = (IsCompleted) ? DeserializeJson<TResult>(ResultData) : default;                
                 return true;
             }
 
