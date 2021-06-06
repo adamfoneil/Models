@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.37</Version>
-    <PackageReleaseNotes>added BackgroundJobInfo&lt;T&gt;</PackageReleaseNotes>
+    <Version>1.1.38</Version>
+    <PackageReleaseNotes>added CheckConstraint attribute</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
