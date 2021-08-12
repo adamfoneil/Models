@@ -7,6 +7,13 @@ namespace DbSchema.Tests
     public class SqlBuilderTests
     {
         [TestMethod]
+        public void SqlGet()
+        {
+            var result = SqlBuilder.Get<Models.Employee>("Id");
+            Assert.IsTrue(result.Equals("SELECT * FROM [Employee] WHERE [Id]=@Id"));
+        }
+
+        [TestMethod]
         public void InsertWithColumns()
         {            
             var result = SqlBuilder.Insert<Models.Employee>(new string[] { "FirstName", "LastName" });            

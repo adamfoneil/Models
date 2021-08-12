@@ -23,6 +23,12 @@ namespace AO.Models.Static
             typeof(Guid), typeof(Guid?)
         };
 
+        public static string Get(Type modelType, string identityColumn, char startDelimiter = '[', char endDelimiter = ']') =>
+            $"SELECT * FROM {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(identityColumn, startDelimiter, endDelimiter)}=@{identityColumn}";
+
+        public static string Get<T>(string identityColumn, char startDelimiter = '[', char endDelimiter = ']') =>
+            Get(typeof(T), identityColumn, startDelimiter, endDelimiter);
+
         public static string Insert(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
         {
             var columns = GetColumns(modelType, SaveAction.Insert, columnNames);
@@ -35,10 +41,8 @@ namespace AO.Models.Static
                 );";
         }
 
-        public static string Insert<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
-        {
-            return Insert(typeof(T), columnNames, startDelimiter, endDelimiter);
-        }
+        public static string Insert<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']') =>
+            Insert(typeof(T), columnNames, startDelimiter, endDelimiter);
 
         public static string Update(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string identityParam = null)
         {
