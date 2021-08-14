@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.39</Version>
-    <PackageReleaseNotes>added SqlBuilder.Get method</PackageReleaseNotes>
+    <Version>1.1.40</Version>
+    <PackageReleaseNotes>added SqlBuilder.GetWhere method</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 

@@ -14,6 +14,13 @@ namespace DbSchema.Tests
         }
 
         [TestMethod]
+        public void SqlGetWhere()
+        {
+            var result = SqlBuilder.GetWhere<Models.Employee>(new { firstName = "hello", lastName = "nobody" });
+            Assert.IsTrue(result.Equals("SELECT * FROM [Employee] WHERE [firstName]=@firstName AND [lastName]=@lastName"));
+        }
+
+        [TestMethod]
         public void InsertWithColumns()
         {            
             var result = SqlBuilder.Insert<Models.Employee>(new string[] { "FirstName", "LastName" });            

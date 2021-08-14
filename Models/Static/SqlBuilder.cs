@@ -24,17 +24,29 @@ namespace AO.Models.Static
         };
 
         public static string Get(Type modelType, string identityColumn, char startDelimiter = '[', char endDelimiter = ']') =>
-            $"SELECT * FROM {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(identityColumn, startDelimiter, endDelimiter)}=@{identityColumn}";
+            $"SELECT * FROM {TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(identityColumn, startDelimiter, endDelimiter)}=@{identityColumn}";
 
         public static string Get<T>(string identityColumn, char startDelimiter = '[', char endDelimiter = ']') =>
             Get(typeof(T), identityColumn, startDelimiter, endDelimiter);
+
+        public static string GetWhere(Type modelType, object criteria, char startDelimiter = '[', char endDelimiter = ']')
+        {
+            var columns = criteria.GetType().GetProperties().Where(p => SupportedTypes.Contains(p.PropertyType)).Select(p => p.Name);
+            return GetWhere(modelType, columns, startDelimiter, endDelimiter);
+        }
+
+        public static string GetWhere<T>(object criteria, char startDelimiter = '[', char endDelimiter = ']') =>
+            GetWhere(typeof(T), criteria, startDelimiter, endDelimiter);
+
+        public static string GetWhere(Type modelType, IEnumerable<string> whereColumns, char startDelimiter = '[', char endDelimiter = ']') =>
+            $"SELECT * FROM {TableName(modelType, startDelimiter, endDelimiter)} WHERE {string.Join(" AND ", whereColumns.Select(col => $"{ApplyDelimiter(col, startDelimiter, endDelimiter)}=@{col}"))}";
 
         public static string Insert(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
         {
             var columns = GetColumns(modelType, SaveAction.Insert, columnNames);
 
             return
-                $@"INSERT INTO {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} (
+                $@"INSERT INTO {TableName(modelType, startDelimiter, endDelimiter)} (
                     {string.Join(", ", columns.Select(col => ApplyDelimiter(col.columnName, startDelimiter, endDelimiter)))}
                 ) VALUES (
                     {string.Join(", ", columns.Select(col => "@" + col.parameterName))}
@@ -56,7 +68,7 @@ namespace AO.Models.Static
             });
 
             return
-                $@"UPDATE {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} SET 
+                $@"UPDATE {TableName(modelType, startDelimiter, endDelimiter)} SET 
                     {string.Join(", ", columns.Select(col => $"{ApplyDelimiter(col.columnName, startDelimiter, endDelimiter)}=@{col.parameterName}"))} 
                 WHERE 
                     {ApplyDelimiter(identityCol, startDelimiter, endDelimiter)}=@{identityParam ?? identityCol}";
@@ -67,7 +79,7 @@ namespace AO.Models.Static
             Update(typeof(T), columnNames, startDelimiter, endDelimiter, identityColumn, identityParam);
 
         public static string Delete(Type modelType, char startDelimiter = '[', char endDelimiter = ']') =>
-            $@"DELETE {ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(modelType.GetIdentityName(), startDelimiter, endDelimiter)}=@id";
+            $@"DELETE {TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(modelType.GetIdentityName(), startDelimiter, endDelimiter)}=@id";
 
         public static string Delete<T>(char startDelimiter = '[', char endDelimiter = ']') => Delete(typeof(T), startDelimiter, endDelimiter);
 
@@ -110,6 +122,9 @@ namespace AO.Models.Static
 
             return modelType.GetProperties().Where(pi => isMapped(pi)).ToArray();
         }
+
+        private static string TableName(Type modelType, char startDelimiter, char endDelimiter) =>
+            ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter);
 
         public static string ApplyDelimiter(string name, char startDelimiter, char endDelimiter) => 
             string.Join(".", name
