@@ -29,7 +29,7 @@ namespace AO.Models.Static
             return $"SELECT * FROM {TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(identityCol, startDelimiter, endDelimiter)}=@{identityCol}";
         }            
 
-        public static string Get<T>(string identityColumn = null, char startDelimiter = '[', char endDelimiter = ']') =>
+        public static string Get<T>(char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null) =>
             Get(typeof(T), startDelimiter, endDelimiter, identityColumn);
 
         public static string GetWhere(Type modelType, object criteria, char startDelimiter = '[', char endDelimiter = ']')

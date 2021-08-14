@@ -9,7 +9,7 @@ namespace DbSchema.Tests
         [TestMethod]
         public void SqlGet()
         {
-            var result = SqlBuilder.Get<Models.Employee>("Id");
+            var result = SqlBuilder.Get<Models.Employee>(identityColumn: "Id");
             Assert.IsTrue(result.Equals("SELECT * FROM [Employee] WHERE [Id]=@Id"));
         }
 
