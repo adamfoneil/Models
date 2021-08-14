@@ -23,11 +23,14 @@ namespace AO.Models.Static
             typeof(Guid), typeof(Guid?)
         };
 
-        public static string Get(Type modelType, string identityColumn, char startDelimiter = '[', char endDelimiter = ']') =>
-            $"SELECT * FROM {TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(identityColumn, startDelimiter, endDelimiter)}=@{identityColumn}";
+        public static string Get(Type modelType, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null)
+        {
+            string identityCol = identityColumn ?? modelType.GetIdentityName();
+            return $"SELECT * FROM {TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(identityCol, startDelimiter, endDelimiter)}=@{identityCol}";
+        }            
 
-        public static string Get<T>(string identityColumn, char startDelimiter = '[', char endDelimiter = ']') =>
-            Get(typeof(T), identityColumn, startDelimiter, endDelimiter);
+        public static string Get<T>(string identityColumn = null, char startDelimiter = '[', char endDelimiter = ']') =>
+            Get(typeof(T), startDelimiter, endDelimiter, identityColumn);
 
         public static string GetWhere(Type modelType, object criteria, char startDelimiter = '[', char endDelimiter = ']')
         {
