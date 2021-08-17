@@ -44,22 +44,22 @@ namespace AO.Models.Static
         public static string GetWhere(Type modelType, IEnumerable<string> whereColumns, char startDelimiter = '[', char endDelimiter = ']') =>
             $"SELECT * FROM {TableName(modelType, startDelimiter, endDelimiter)} WHERE {string.Join(" AND ", whereColumns.Select(col => $"{ApplyDelimiter(col, startDelimiter, endDelimiter)}=@{col}"))}";
 
-        public static string Insert(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']')
+        public static string Insert(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string tableName = null)
         {
             var columns = GetColumns(modelType, SaveAction.Insert, columnNames);
 
             return
-                $@"INSERT INTO {TableName(modelType, startDelimiter, endDelimiter)} (
+                $@"INSERT INTO {ApplyDelimiter(tableName, startDelimiter, endDelimiter) ?? TableName(modelType, startDelimiter, endDelimiter)} (
                     {string.Join(", ", columns.Select(col => ApplyDelimiter(col.columnName, startDelimiter, endDelimiter)))}
                 ) VALUES (
                     {string.Join(", ", columns.Select(col => "@" + col.parameterName))}
                 );";
         }
 
-        public static string Insert<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']') =>
-            Insert(typeof(T), columnNames, startDelimiter, endDelimiter);
+        public static string Insert<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string tableName = null) =>
+            Insert(typeof(T), columnNames, startDelimiter, endDelimiter, tableName);
 
-        public static string Update(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string identityParam = null)
+        public static string Update(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string identityParam = null, string tableName = null)
         {
             var columns = GetColumns(modelType, SaveAction.Update, columnNames);
             
@@ -71,20 +71,20 @@ namespace AO.Models.Static
             });
 
             return
-                $@"UPDATE {TableName(modelType, startDelimiter, endDelimiter)} SET 
+                $@"UPDATE {ApplyDelimiter(tableName, startDelimiter, endDelimiter) ?? TableName(modelType, startDelimiter, endDelimiter)} SET 
                     {string.Join(", ", columns.Select(col => $"{ApplyDelimiter(col.columnName, startDelimiter, endDelimiter)}=@{col.parameterName}"))} 
                 WHERE 
                     {ApplyDelimiter(identityCol, startDelimiter, endDelimiter)}=@{identityParam ?? identityCol}";
         }
 
         public static string Update<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', 
-            string identityColumn = null, string identityParam = null) => 
-            Update(typeof(T), columnNames, startDelimiter, endDelimiter, identityColumn, identityParam);
+            string identityColumn = null, string identityParam = null, string tableName = null) => 
+            Update(typeof(T), columnNames, startDelimiter, endDelimiter, identityColumn, identityParam, tableName);
 
-        public static string Delete(Type modelType, char startDelimiter = '[', char endDelimiter = ']') =>
-            $@"DELETE {TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(modelType.GetIdentityName(), startDelimiter, endDelimiter)}=@id";
+        public static string Delete(Type modelType, char startDelimiter = '[', char endDelimiter = ']', string tableName = null) =>
+            $@"DELETE {ApplyDelimiter(tableName, startDelimiter, endDelimiter) ?? TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(modelType.GetIdentityName(), startDelimiter, endDelimiter)}=@id";
 
-        public static string Delete<T>(char startDelimiter = '[', char endDelimiter = ']') => Delete(typeof(T), startDelimiter, endDelimiter);
+        public static string Delete<T>(char startDelimiter = '[', char endDelimiter = ']', string tableName = null) => Delete(typeof(T), startDelimiter, endDelimiter, tableName);
 
         private static IEnumerable<(string columnName, string parameterName)> GetColumns(Type modelType, SaveAction saveAction, IEnumerable<string> explicitColumns)
         {
@@ -130,8 +130,8 @@ namespace AO.Models.Static
             ApplyDelimiter(modelType.GetTableName(), startDelimiter, endDelimiter);
 
         public static string ApplyDelimiter(string name, char startDelimiter, char endDelimiter) => 
-            string.Join(".", name
+            (!string.IsNullOrEmpty(name)) ? string.Join(".", name
                 .Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(namePart => $"{startDelimiter}{namePart}{endDelimiter}"));        
+                .Select(namePart => $"{startDelimiter}{namePart}{endDelimiter}")) : null;        
     }
 }

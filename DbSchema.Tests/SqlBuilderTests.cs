@@ -96,5 +96,43 @@ namespace DbSchema.Tests
             Assert.IsTrue(sql.ReplaceWhitespace().Equals(result.ReplaceWhitespace()));
         }
 
+
+        [TestMethod]
+        public void InsertExplicitTableName()
+        {
+            var ins = SqlBuilder.Insert<Models.Employee>(tableName: "dbo.Hello");
+            Assert.IsTrue(ins.Equals(@"INSERT INTO [dbo].[Hello] (
+                    [FirstName], [LastName], [HireDate], [TermDate], [IsExempt], [Timestamp], [Status], [Value]
+                ) VALUES (
+                    @FirstName, @LastName, @HireDate, @TermDate, @IsExempt, @Timestamp, @Status, @Value
+                );"));
+        }
+
+        [TestMethod]
+        public void UpdateExplicitTableName()
+        {
+            var upd = SqlBuilder.Update<Models.Employee>(tableName: "Hello");
+            Assert.IsTrue(upd.Equals(@"UPDATE [Hello] SET 
+                    [FirstName]=@FirstName, [LastName]=@LastName, [HireDate]=@HireDate, [TermDate]=@TermDate, [IsExempt]=@IsExempt, [Timestamp]=@Timestamp, [Status]=@Status, [Value]=@Value 
+                WHERE 
+                    [Id]=@Id"));
+        }
+
+        [TestMethod]
+        public void UpdateExplicitTableAndIdentity()
+        {
+            var upd = SqlBuilder.Update<Models.Employee>(tableName: "Hello", identityColumn:"Yoohoo");
+            Assert.IsTrue(upd.Equals(@"UPDATE [Hello] SET 
+                    [FirstName]=@FirstName, [LastName]=@LastName, [HireDate]=@HireDate, [TermDate]=@TermDate, [IsExempt]=@IsExempt, [Timestamp]=@Timestamp, [Status]=@Status, [Value]=@Value 
+                WHERE 
+                    [Yoohoo]=@Yoohoo"));
+        }
+
+        [TestMethod]
+        public void DeleteExplicitTableName()
+        {
+            var del = SqlBuilder.Delete<Models.Employee>(tableName: "Hello");
+            Assert.IsTrue(del.Equals("DELETE [Hello] WHERE [Id]=@id"));
+        }
     }
 }

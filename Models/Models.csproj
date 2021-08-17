@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.42</Version>
-    <PackageReleaseNotes>optional identityColumn name argument on Get method</PackageReleaseNotes>
+    <Version>1.1.43</Version>
+    <PackageReleaseNotes>optional tableName argument on Insert, Update, and Delete methods</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
