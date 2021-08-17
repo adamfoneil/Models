@@ -134,5 +134,26 @@ namespace DbSchema.Tests
             var del = SqlBuilder.Delete<Models.Employee>(tableName: "Hello");
             Assert.IsTrue(del.Equals("DELETE [Hello] WHERE [Id]=@id"));
         }
+
+        [TestMethod]
+        public void InsertAvoidExplicitIdentity()
+        {
+            var ins = SqlBuilder.Insert<Models.AtypicalIdentity>(tableName: "dbo.Hello", identityColumn: "RoleId");
+            Assert.IsTrue(ins.Equals(@"INSERT INTO [dbo].[Hello] (
+                    [Name], [NormalizedName], [ConcurrencyStamp]
+                ) VALUES (
+                    @Name, @NormalizedName, @ConcurrencyStamp
+                );"));
+        }
+
+        [TestMethod]
+        public void UpdateAtypicalIdentity()
+        {
+            var upd = SqlBuilder.Update<Models.AtypicalIdentity>(tableName: "dbo.Hello", identityColumn: "RoleId");
+            Assert.IsTrue(upd.Equals(@"UPDATE [dbo].[Hello] SET 
+                    [Name]=@Name, [NormalizedName]=@NormalizedName, [ConcurrencyStamp]=@ConcurrencyStamp 
+                WHERE 
+                    [RoleId]=@RoleId"));
+        }
     }
 }

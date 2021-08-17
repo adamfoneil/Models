@@ -44,9 +44,9 @@ namespace AO.Models.Static
         public static string GetWhere(Type modelType, IEnumerable<string> whereColumns, char startDelimiter = '[', char endDelimiter = ']') =>
             $"SELECT * FROM {TableName(modelType, startDelimiter, endDelimiter)} WHERE {string.Join(" AND ", whereColumns.Select(col => $"{ApplyDelimiter(col, startDelimiter, endDelimiter)}=@{col}"))}";
 
-        public static string Insert(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string tableName = null)
+        public static string Insert(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string tableName = null)
         {
-            var columns = GetColumns(modelType, SaveAction.Insert, columnNames);
+            var columns = GetColumns(modelType, SaveAction.Insert, columnNames, identityColumn);
 
             return
                 $@"INSERT INTO {ApplyDelimiter(tableName, startDelimiter, endDelimiter) ?? TableName(modelType, startDelimiter, endDelimiter)} (
@@ -56,8 +56,8 @@ namespace AO.Models.Static
                 );";
         }
 
-        public static string Insert<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string tableName = null) =>
-            Insert(typeof(T), columnNames, startDelimiter, endDelimiter, tableName);
+        public static string Insert<T>(IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string tableName = null) =>
+            Insert(typeof(T), columnNames, startDelimiter, endDelimiter, identityColumn, tableName);
 
         public static string Update(Type modelType, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string identityParam = null, string tableName = null)
         {
@@ -81,23 +81,23 @@ namespace AO.Models.Static
             string identityColumn = null, string identityParam = null, string tableName = null) => 
             Update(typeof(T), columnNames, startDelimiter, endDelimiter, identityColumn, identityParam, tableName);
 
-        public static string Delete(Type modelType, char startDelimiter = '[', char endDelimiter = ']', string tableName = null) =>
-            $@"DELETE {ApplyDelimiter(tableName, startDelimiter, endDelimiter) ?? TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(modelType.GetIdentityName(), startDelimiter, endDelimiter)}=@id";
+        public static string Delete(Type modelType, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string tableName = null) =>
+            $@"DELETE {ApplyDelimiter(tableName, startDelimiter, endDelimiter) ?? TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(identityColumn, startDelimiter, endDelimiter) ?? ApplyDelimiter(modelType.GetIdentityName(), startDelimiter, endDelimiter)}=@id";
 
-        public static string Delete<T>(char startDelimiter = '[', char endDelimiter = ']', string tableName = null) => Delete(typeof(T), startDelimiter, endDelimiter, tableName);
+        public static string Delete<T>(char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string tableName = null) => Delete(typeof(T), startDelimiter, endDelimiter, identityColumn, tableName);
 
-        private static IEnumerable<(string columnName, string parameterName)> GetColumns(Type modelType, SaveAction saveAction, IEnumerable<string> explicitColumns)
+        private static IEnumerable<(string columnName, string parameterName)> GetColumns(Type modelType, SaveAction saveAction, IEnumerable<string> explicitColumns, string identityColumn = null)
         {
             var result =
                 explicitColumns?.Select(col => (col, col)) ??
-                GetMappedProperties(modelType, saveAction).Select(pi => (pi.GetColumnName(), pi.Name));
+                GetMappedProperties(modelType, saveAction, identityColumn).Select(pi => (pi.GetColumnName(), pi.Name));
 
             if (!result.Any()) throw new InvalidOperationException($"Model type {modelType.Name} must have at least one column to build SQL {saveAction} statement.");
 
             return result;
         }
 
-        public static IEnumerable<PropertyInfo> GetMappedProperties(Type modelType, SaveAction saveAction)
+        public static IEnumerable<PropertyInfo> GetMappedProperties(Type modelType, SaveAction saveAction, string identityColumn = null)
         {
             bool isNullableEnum(Type type)
             {
@@ -111,6 +111,7 @@ namespace AO.Models.Static
             {
                 if (!pi.CanWrite) return false;
                 if (pi.IsIdentity()) return false;
+                if (!string.IsNullOrEmpty(identityColumn) && pi.Name.Equals(identityColumn)) return false;
                 if (!SupportedTypes.Contains(pi.PropertyType) && !pi.PropertyType.IsEnum && !isNullableEnum(pi.PropertyType)) return false;
                 if (!pi.AllowSaveAction(saveAction)) return false;
 
