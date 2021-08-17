@@ -155,5 +155,26 @@ namespace DbSchema.Tests
                 WHERE 
                     [RoleId]=@RoleId"));
         }
+
+        [TestMethod]
+        public void InsertColumnsWhere()
+        {
+            var ins = SqlBuilder.Insert<Models.Employee>(propertiesWhere: (pi) => pi.PropertyType.Equals(typeof(string)));
+            Assert.IsTrue(ins.Equals(@"INSERT INTO [Employee] (
+                    [FirstName], [LastName]
+                ) VALUES (
+                    @FirstName, @LastName
+                );"));
+        }
+
+        [TestMethod]
+        public void UpdateColumnsWhere()
+        {
+            var upd = SqlBuilder.Update<Models.Employee>(propertiesWhere: (pi) => pi.PropertyType.Equals(typeof(string)));
+            Assert.IsTrue(upd.Equals(@"UPDATE [Employee] SET 
+                    [FirstName]=@FirstName, [LastName]=@LastName 
+                WHERE 
+                    [Id]=@Id"));
+        }
     }
 }
