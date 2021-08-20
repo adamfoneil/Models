@@ -81,6 +81,22 @@ namespace AO.Models.Static
             string identityColumn = null, string identityParam = null, string tableName = null, Func<PropertyInfo, bool> propertiesWhere = null) => 
             Update(typeof(T), columnNames, startDelimiter, endDelimiter, identityColumn, identityParam, tableName, propertiesWhere);
 
+        public static string UpdateWhere(Type modelType, IEnumerable<string> whereColumns, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string tableName = null, Func<PropertyInfo, bool> propertiesWhere = null)
+        {            
+            var columns = GetColumns(modelType, SaveAction.Update, columnNames, propertiesWhere: propertiesWhere).Where(tuple => !whereColumns.Contains(tuple.columnName));
+
+            var whereClause = string.Join(" AND ", whereColumns.Select(col => $"{startDelimiter}{col}{endDelimiter}=@{col}"));
+
+            return
+                $@"UPDATE {ApplyDelimiter(tableName, startDelimiter, endDelimiter) ?? TableName(modelType, startDelimiter, endDelimiter)} SET 
+                    {string.Join(", ", columns.Select(col => $"{ApplyDelimiter(col.columnName, startDelimiter, endDelimiter)}=@{col.parameterName}"))} 
+                WHERE 
+                    {whereClause}";
+        }
+
+        public static string UpdateWhere<T>(IEnumerable<string> whereColumns, IEnumerable<string> columnNames = null, char startDelimiter = '[', char endDelimiter = ']', string tableName = null, Func<PropertyInfo, bool> propertiesWhere = null) =>
+            UpdateWhere(typeof(T), whereColumns, columnNames, startDelimiter, endDelimiter, tableName, propertiesWhere);
+
         public static string Delete(Type modelType, char startDelimiter = '[', char endDelimiter = ']', string identityColumn = null, string tableName = null) =>
             $@"DELETE {ApplyDelimiter(tableName, startDelimiter, endDelimiter) ?? TableName(modelType, startDelimiter, endDelimiter)} WHERE {ApplyDelimiter(identityColumn, startDelimiter, endDelimiter) ?? ApplyDelimiter(modelType.GetIdentityName(), startDelimiter, endDelimiter)}=@id";
 

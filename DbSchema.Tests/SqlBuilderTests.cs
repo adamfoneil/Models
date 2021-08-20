@@ -176,5 +176,28 @@ namespace DbSchema.Tests
                 WHERE 
                     [Id]=@Id"));
         }
+
+        [TestMethod]
+        public void UpdateWhereSimpleCase()
+        {
+            var upd = SqlBuilder.UpdateWhere<Models.Employee>(new[] { "FirstName", "LastName" });
+            Assert.IsTrue(upd.Equals(@"UPDATE [Employee] SET 
+                    [HireDate]=@HireDate, [TermDate]=@TermDate, [IsExempt]=@IsExempt, [Timestamp]=@Timestamp, [Status]=@Status, [Value]=@Value 
+                WHERE 
+                    [FirstName]=@FirstName AND [LastName]=@LastName"));
+        }
+
+        [TestMethod]
+        public void UpdateWhereAdvanced()
+        {
+            var upd = SqlBuilder.UpdateWhere<Models.Employee>(
+                new[] { "FirstName", "LastName" }, 
+                new[] { "HireDate", "TermDate" }, tableName: "dbo.Whatever");
+
+            Assert.IsTrue(upd.Equals(@"UPDATE [dbo].[Whatever] SET 
+                    [HireDate]=@HireDate, [TermDate]=@TermDate 
+                WHERE 
+                    [FirstName]=@FirstName AND [LastName]=@LastName"));
+        }
     }
 }

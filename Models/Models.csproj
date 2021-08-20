@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.45</Version>
-    <PackageReleaseNotes>PropertyInfo filter delegate arg in Insert and Update</PackageReleaseNotes>
+    <Version>1.1.46</Version>
+    <PackageReleaseNotes>SqlBuilder.UpdateWhere method</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
