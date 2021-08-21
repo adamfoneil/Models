@@ -1,5 +1,7 @@
-﻿using AO.Models.Static;
+﻿using AO.Models.Models;
+using AO.Models.Static;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace DbSchema.Tests
 {
@@ -198,6 +200,21 @@ namespace DbSchema.Tests
                     [HireDate]=@HireDate, [TermDate]=@TermDate 
                 WHERE 
                     [FirstName]=@FirstName AND [LastName]=@LastName"));
+        }
+
+        [TestMethod]
+        public void InsertUserProfile()
+        {
+            var ins = SqlBuilder.Insert<UserProfileBase>(new[]
+            {
+                "Id", "UserName", "Email", "EmailConfirmed", "PhoneNumber", "PhoneNumberConfirmed", "TwoFactorEnabled", "TimeZoneId"
+            });
+            Assert.IsTrue(ins.Equals(
+                @"INSERT INTO [AspNetUsers] (
+                    [Id], [UserName], [Email], [EmailConfirmed], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [TimeZoneId]
+                ) VALUES (
+                    @Id, @UserName, @Email, @EmailConfirmed, @PhoneNumber, @PhoneNumberConfirmed, @TwoFactorEnabled, @TimeZoneId
+                );"));
         }
     }
 }
