@@ -11,5 +11,8 @@ Nuget package: **AO.Models**
 - [Enums](https://github.com/adamosoftware/DbSchema.Attributes/tree/master/Models/Enums)
 - [Static](https://github.com/adamfoneil/Models/tree/master/Models/Static)
 
+## Wiki
+Please see the [wiki](https://github.com/adamfoneil/Models/wiki) for info about my SqlBuilder static class and other helpers here.
+
 ## Prior Versions
 There's an earlier version of this [package](https://www.nuget.org/packages/AO.DbSchema.Attributes/) called **AO.DbSchema.Attributes**.
