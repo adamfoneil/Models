@@ -12,8 +12,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.46</Version>
-    <PackageReleaseNotes>SqlBuilder.UpdateWhere method</PackageReleaseNotes>
+    <Version>1.1.47</Version>
+    <PackageReleaseNotes>new SqlBuilder Insert and Update methods without model type</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 

@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace AO.Models.Static
 {
-    public static class SqlBuilder
+    public static partial class SqlBuilder
     {
         public static IEnumerable<Type> SupportedTypes => new Type[]
         {

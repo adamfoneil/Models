@@ -216,5 +216,34 @@ namespace DbSchema.Tests
                     @Id, @UserName, @Email, @EmailConfirmed, @PhoneNumber, @PhoneNumberConfirmed, @TwoFactorEnabled, @TimeZoneId
                 );"));
         }
+
+        [TestMethod]
+        public void InsertWithColumnNames()
+        {
+            var sql = SqlBuilder.Insert("dbo.Whatever", new[]
+            {
+                "This", "That", "Other"
+            });
+
+            Assert.IsTrue(sql.Equals(@"INSERT INTO [dbo].[Whatever] (
+                [This], [That], [Other]
+            ) VALUES (
+                @This, @That, @Other
+            );"));
+        }
+
+        [TestMethod]
+        public void UpdateWithColumnNames()
+        {
+            var sql = SqlBuilder.Update("dbo.Whatever", new[]
+            {
+                "This", "That", "Other"
+            });
+
+            Assert.IsTrue(sql.Equals(@"UPDATE [dbo].[Whatever] SET
+                [This]=@This, [That]=@That, [Other]=@Other
+            WHERE
+                [Id]=@Id;"));
+        }
     }
 }
