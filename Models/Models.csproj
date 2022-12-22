@@ -13,7 +13,7 @@
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
     <Version>1.1.48</Version>
-    <PackageReleaseNotes>new SqlBuilder Insert and Update methods without model type</PackageReleaseNotes>
+    <PackageReleaseNotes>new SaveAction enum value related to https://github.com/adamfoneil/Dapper.Repository/issues/13</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>
 
