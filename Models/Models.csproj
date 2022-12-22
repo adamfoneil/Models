@@ -12,7 +12,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/adamfoneil/Models</RepositoryUrl>
     <PackageProjectUrl>https://github.com/adamfoneil/Models</PackageProjectUrl>
-    <Version>1.1.47</Version>
+    <Version>1.1.48</Version>
     <PackageReleaseNotes>new SqlBuilder Insert and Update methods without model type</PackageReleaseNotes>
     <PackageId>AO.Models</PackageId>
   </PropertyGroup>

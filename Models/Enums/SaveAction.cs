@@ -4,6 +4,7 @@
     {
         None,
         Insert,
-        Update
+        Update,
+        Delete
     }
 }
